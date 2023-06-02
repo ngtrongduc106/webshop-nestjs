@@ -3,7 +3,7 @@ import { Controllers, Services } from "src/utils/constants";
 import { iUserService } from "./user";
 import { AuthGuard } from "src/guards/auth.guard";
 import { TokenDTO } from "./dtos/Token.dto";
-import { RedisProfile } from "src/utils/type";
+import { RedisProfile, UserProfileResult } from "src/utils/type";
 
 @Controller(Controllers.User)
 export class UserController {
@@ -13,7 +13,7 @@ export class UserController {
 
     @Get('profile')
     @UseGuards(AuthGuard)
-    async profile(@Request() data: TokenDTO) {
+    async profile(@Request() data: TokenDTO): Promise<UserProfileResult> {
         return await this.userService.handleProfile(TokenDTO.plainToClass(data))
     }
 
