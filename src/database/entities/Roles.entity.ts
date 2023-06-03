@@ -10,7 +10,8 @@ export class RolesEntity {
     roleId: string
 
     @Column({
-        nullable: false
+        nullable: false,
+        unique: true
     })
     roleName: string
 

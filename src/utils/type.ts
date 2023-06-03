@@ -71,3 +71,22 @@ export type UserAddress = {
     districtName: string
     addressHome: string
 }
+
+export type Role_CreateRoleDetails = {
+    roleName: string
+    permissions?: {
+        permissionId: string
+    }[]
+}
+
+export type Role_AddRolePermissionDetails = {
+    roleId: string
+    permissions?: {
+        permissionId: string
+    }[]
+}
+
+export type Role_AddUserRoleDetails = {
+    userId: string
+    roleId: string[] | string
+}

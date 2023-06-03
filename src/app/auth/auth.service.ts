@@ -10,6 +10,7 @@ import { UserAddressEntity } from "src/database/entities/UserAddress.entity";
 import { RedisService } from "src/common/services/redis/redis.service";
 import { BcryptService } from "src/common/services/bcrypt/bcrypt.service";
 import { JwtCustomService } from "src/common/services/jwt/jwt.service";
+import { EmailAlreadyExists, EmailOrPasswordIncorret } from "src/common/exceptions/auth.exception";
 
 @Injectable()
 export class AuthService implements iAuthService {
@@ -34,11 +35,11 @@ export class AuthService implements iAuthService {
         })
 
         if (!user) {
-            throw new HttpException("Email or Password incorrect", HttpStatus.BAD_REQUEST)
+            throw new EmailOrPasswordIncorret();
         }
 
         if (!this.bcryptService.handleCheck(user.userPassword, data.userPassword)) {
-            throw new HttpException("Email or Password incorrect", HttpStatus.BAD_REQUEST)
+            throw new EmailOrPasswordIncorret();
         }
 
         const result = this.jwtCustomService.genAuthToken({ userId: user.userId })
@@ -103,7 +104,7 @@ export class AuthService implements iAuthService {
         } catch (error) {
             await queryRunner.rollbackTransaction()
             if (error.errno == 1062) {
-                throw new HttpException("Email already exists", HttpStatus.BAD_REQUEST)
+                throw new EmailAlreadyExists();
             }
             throw new HttpException("Something went wrong", HttpStatus.BAD_REQUEST)
         } finally {
