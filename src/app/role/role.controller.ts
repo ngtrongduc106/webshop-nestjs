@@ -30,16 +30,22 @@ export class RoleController {
     }
 
     @Get('permissions')
+    @UseGuards(PermissionGuard)
+    @UsePermission('view-role')
     getAllPermission() {
         return this.roleService.handleGetAllPermission();
     }
 
     @Put('permissions')
+    @UseGuards(PermissionGuard)
+    @UsePermission(['view-role', 'update-role'])
     addRolePermission(@Body() data: AddRolePermissionDTO) {
         return this.roleService.handleAddRolePermission(AddRolePermissionDTO.plainToClass(data));
     }
 
     @Post('user')
+    @UseGuards(PermissionGuard)
+    @UsePermission(['view-role', 'update-user, create-role', 'update-role'])
     addUserRole(@Body() data: AddUserRoleDTO) {
         return this.roleService.handleAddUserRole(AddUserRoleDTO.plainToClass(data));
     }
