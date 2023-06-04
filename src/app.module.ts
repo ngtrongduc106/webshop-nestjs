@@ -1,3 +1,5 @@
+import { APP_FILTER } from '@nestjs/core';
+import { AllExceptionsFilter } from './utils/filter/exception.filter';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceOptions } from './database';
@@ -20,6 +22,10 @@ import { RoleModule } from './app/role/role.module';
     })
   ],
   controllers: [],
-  providers: []
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionsFilter,
+    },]
 })
 export class AppModule { }
