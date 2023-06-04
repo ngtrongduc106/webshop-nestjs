@@ -42,7 +42,7 @@ export class AuthService implements iAuthService {
             throw new EmailOrPasswordIncorret();
         }
 
-        const result = this.jwtCustomService.genAuthToken({ userId: user.userId })
+        const result = this.jwtCustomService.genAuthToken({ userId: user.userId, userEmail: user.userEmail });
 
         const roles: string[] = [];
         const permissions: string[] = [];
@@ -94,7 +94,7 @@ export class AuthService implements iAuthService {
 
             await queryRunner.commitTransaction()
 
-            const result = this.jwtCustomService.genAuthToken({ userId: resultUser.userId })
+            const result = this.jwtCustomService.genAuthToken({ userId: resultUser.userId, userEmail: resultUser.userEmail })
 
             await this.redisService.setProfile(resultUser.userId, {
                 refreshToken: result.refreshToken

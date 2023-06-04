@@ -19,6 +19,7 @@ export type District = {
 
 export type PayLoadJwt = {
     userId: string
+    userEmail: string
 }
 
 export type Permission = {
