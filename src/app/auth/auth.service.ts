@@ -92,13 +92,14 @@ export class AuthService implements iAuthService {
 
             await queryRunner.manager.save(userAddress)
 
-            await queryRunner.commitTransaction()
 
             const result = this.jwtCustomService.genAuthToken({ userId: resultUser.userId, userEmail: resultUser.userEmail })
 
             await this.redisService.setProfile(resultUser.userId, {
                 refreshToken: result.refreshToken
             })
+
+            await queryRunner.commitTransaction()
 
             return result
         } catch (error) {
