@@ -8,7 +8,9 @@ export const DSOptions: DataSourceOptions = {
     port: process.env.DB_PORT,
     database: process.env.DB_NAME,
     username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD
+    password: process.env.DB_PASSWORD,
+    entities: ["dist/database/entities/*.entity.{js,ts}"],
+    migrations: ["dist/database/migrations/*.{js,ts}"]
 };
 
 const DSource: DataSource = new DataSource(DSOptions);
