@@ -23,6 +23,16 @@ export class UserEntity {
     @Column({
         nullable: false
     })
+    userFirstName: string;
+
+    @Column({
+        nullable: false
+    })
+    userLastName: string;
+
+    @Column({
+        nullable: false
+    })
     userPhone: string;
 
     @Column({
