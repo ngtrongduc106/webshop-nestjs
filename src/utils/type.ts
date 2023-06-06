@@ -8,7 +8,7 @@ export type Redis_User = {
 
 export type Jwt_UserPayload = {
     userId: string;
-    userEmai: string;
+    userEmail: string;
 }
 
 export type Jwt_TokenPayload = {

@@ -4,9 +4,11 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { DSOptions } from './database';
+import { AuthModule } from './app/auth/auth.module';
 
 @Module({
   imports: [
+    AuthModule,
     // Config Typeorm
     TypeOrmModule.forRoot(DSOptions),
     // Config Env

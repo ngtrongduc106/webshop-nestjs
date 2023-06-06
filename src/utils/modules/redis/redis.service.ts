@@ -26,6 +26,7 @@ export class RedisService implements IRedisService {
     async setUser(key: string, value: Redis_User): Promise<boolean> {
         try {
             await this.redisClient.hSet(key, value);
+            await this.redisClient.expire(key, 60 * 60 * 24 * 365);
             return true;
         } catch (error) {
             console.log(error);
