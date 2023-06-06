@@ -1,0 +1,42 @@
+[
+    {
+        "permissionId": "01",
+        "permissionType": "role",
+        "permissionName": "view-role"
+    },
+    {
+        "permissionId": "02",
+        "permissionType": "role",
+        "permissionName": "create-role"
+    },
+    {
+        "permissionId": "03",
+        "permissionType": "role",
+        "permissionName": "update-role"
+    },
+    {
+        "permissionId": "04",
+        "permissionType": "role",
+        "permissionName": "delete-role"
+    },
+    {
+        "permissionId": "05",
+        "permissionType": "user",
+        "permissionName": "view-user"
+    },
+    {
+        "permissionId": "06",
+        "permissionType": "user",
+        "permissionName": "create-user"
+    },
+    {
+        "permissionId": "07",
+        "permissionType": "user",
+        "permissionName": "update-user"
+    },
+    {
+        "permissionId": "08",
+        "permissionType": "user",
+        "permissionName": "delete-user"
+    }
+]

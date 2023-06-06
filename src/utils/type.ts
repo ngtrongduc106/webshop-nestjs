@@ -16,6 +16,32 @@ export type Jwt_TokenPayload = {
     refreshToken: string;
 }
 
+export type Permission = {
+    permissionId: string;
+    permissionType: string;
+    permissionName: string;
+}
+
+export type Locate_City = {
+    name: string;
+    slug: string;
+    type: string;
+    name_with_type: string;
+    cityId: string;
+}
+
+export type Locate_District = {
+    name: string;
+    type: string;
+    slug: string;
+    name_with_type: string;
+    path: string;
+    path_with_type: string;
+    districtId: string;
+    cityId: string;
+}
+
+
 export type Auth_LoginDetails = {
     userEmail: string;
     userPassword: string;
