@@ -1,16 +1,19 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { IRedisService } from "./redis";
 import * as redis from "redis";
 import { RedisClientType } from "@redis/client";
 import { Redis_User } from "src/utils/type";
+import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class RedisService implements IRedisService {
     private redisClient: RedisClientType;
 
-    constructor() {
+    constructor(
+        @Inject(ConfigService) private configService: ConfigService
+    ) {
         this.redisClient = redis.createClient({
-            url: "redis://127.0.0.1:6379"
+            url: configService.get<string>("Redis_URL")
         })
 
         this.connect();
