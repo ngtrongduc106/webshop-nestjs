@@ -1,3 +1,4 @@
 export enum Services {
-    Redis = "RedisCustom-service"
+    Redis = "RedisCustom-service",
+    Jwt = "JwtCustom-service"
 }
