@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
 import { IAuthService } from "./auth";
-import { Auth_LoginDetails, Jwt_TokenPayload, Auth_RegisterDetails } from "src/utils/type";
+import { Auth_LoginDetails, Jwt_TokenPayload, Auth_RegisterDetails, Permission } from "src/utils/type";
 import { InjectRepository } from "@nestjs/typeorm";
 import { UserEntity } from "src/database/entities/User.entity";
 import { Repository } from "typeorm";
@@ -9,6 +9,8 @@ import { IBcryptService } from "src/utils/modules/bcrypt/bcrypt";
 import { IJwtCustomService } from "src/utils/modules/jwt/jwt";
 import { IRedisService } from "src/utils/modules/redis/redis";
 import { UserAddressEntity } from "src/database/entities/UserAddress.entity";
+import { IPermissionService } from "src/utils/modules/permission/permission";
+import { RolePermission } from "src/database/entities/RolePermission.entity";
 
 @Injectable()
 export class AuthService implements IAuthService {
@@ -17,7 +19,8 @@ export class AuthService implements IAuthService {
         @InjectRepository(UserAddressEntity) private readonly userAddressEntity: Repository<UserAddressEntity>,
         @Inject(Services.Bcrypt) private readonly bcryptService: IBcryptService,
         @Inject(Services.Jwt) private readonly jwtService: IJwtCustomService,
-        @Inject(Services.Redis) private readonly redisService: IRedisService
+        @Inject(Services.Redis) private readonly redisService: IRedisService,
+        @Inject(Services.Permission) private readonly permissionService: IPermissionService
     ) { }
 
     async handleLogin(data: Auth_LoginDetails): Promise<Jwt_TokenPayload> {
@@ -37,8 +40,18 @@ export class AuthService implements IAuthService {
             throw new HttpException("Email or Password incorrect !", HttpStatus.BAD_REQUEST);
         }
 
-        const roles = [];
-        const permissions = [];
+        const permissions: string[] = [];
+        const allPermisison = this.permissionService.getAllPermissions();
+        user.roles.map((role) => {
+            role.permissions.map((permisson: RolePermission) => {
+                const foundPermission = allPermisison.find(x => x.permissionId === permisson.permissionId);
+                const perName: string = foundPermission ? foundPermission.permissionName : null;
+
+                if (perName) {
+                    permissions.push(perName);
+                }
+            })
+        })
 
         const result: Jwt_TokenPayload = this.jwtService.handleEncodeAuthToken({
             userId: user.userId,

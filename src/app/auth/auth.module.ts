@@ -8,13 +8,15 @@ import { BcryptModule } from "src/utils/modules/bcrypt/bcrypt.module";
 import { JwtCustomModule } from "src/utils/modules/jwt/jwt.module";
 import { RedisModule } from "src/utils/modules/redis/redis.module";
 import { UserAddressEntity } from "src/database/entities/UserAddress.entity";
+import { PermissionModule } from "src/utils/modules/permission/permission.module";
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([UserEntity, UserAddressEntity]),
         BcryptModule,
         JwtCustomModule,
-        RedisModule
+        RedisModule,
+        PermissionModule
     ],
     controllers: [AuthController],
     providers: [
