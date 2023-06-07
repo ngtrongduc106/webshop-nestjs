@@ -58,3 +58,12 @@ export type Auth_RegisterDetails = {
     districtId: string;
     addressHome: string;
 }
+
+export type Location_GetAllCities_Details = {
+    country: string;
+}
+
+export type Location_GetDistrict_Details = {
+    country: string;
+    cityId: string;
+}

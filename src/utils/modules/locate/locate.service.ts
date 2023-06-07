@@ -7,8 +7,8 @@ import { ILocateService } from "./locate";
 export class LocateService implements ILocateService {
 
     private path(country: string): { pathCity: string, pathDistrict: string } {
-        const pathCity = `/src/utils/data/locate/${country}/cities.json`;
-        const pathDistrict = `/src/utils/data/locate/${country}/districts.json`;
+        const pathCity = `./src/utils/data/locate/${country}/cities.json`;
+        const pathDistrict = `./src/utils/data/locate/${country}/districts.json`;
 
         return { pathCity, pathDistrict };
     }
@@ -36,7 +36,7 @@ export class LocateService implements ILocateService {
     getAllDistrictsByCityId(country: string, cityId: string): Locate_District[] {
         const path = this.path(country);
 
-        const read = fs.readFileSync(path.pathCity);
+        const read = fs.readFileSync(path.pathDistrict);
 
         const districts: Locate_District[] = JSON.parse(read.toString());
 
