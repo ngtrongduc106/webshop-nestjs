@@ -14,7 +14,7 @@ export class RolePermission {
 
     @ManyToOne(() => RoleEntity, roleEntity => roleEntity.permissions)
     @JoinColumn({
-        name: "FK_roleId"
+        name: "roleId"
     })
     role: RoleEntity
 }

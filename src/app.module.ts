@@ -6,11 +6,13 @@ import { ConfigModule } from '@nestjs/config';
 import { DSOptions } from './database';
 import { AuthModule } from './app/auth/auth.module';
 import { LocationModule } from './app/location/location.module';
+import { UserModule } from './app/user/user.module';
 
 @Module({
   imports: [
     AuthModule,
     LocationModule,
+    UserModule,
     // Config Typeorm
     TypeOrmModule.forRoot(DSOptions),
     // Config Env

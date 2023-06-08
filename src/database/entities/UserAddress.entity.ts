@@ -44,7 +44,7 @@ export class UserAddressEntity {
 
     @ManyToOne(() => UserEntity, userEntity => userEntity.userAddress)
     @JoinColumn({
-        name: "FK_userId"
+        name: "userId"
     })
     user: UserEntity;
 }

@@ -67,3 +67,26 @@ export type Location_GetDistrict_Details = {
     country: string;
     cityId: string;
 }
+
+export type User_GetProfile_Details = {
+    userId: string;
+    userEmail: string;
+}
+
+export type User_GetProfile_UserAddress_Details = {
+    country: string;
+    cityId: string;
+    cityName: string;
+    districtId: string;
+    districtName: string;
+    homeAddress: string;
+}
+
+export type User_GetProfile_Result = {
+    userId: string;
+    userEmail: string;
+    userFirstName: string;
+    userLastName: string;
+    userPhone: string;
+    userAddress: User_GetProfile_UserAddress_Details[]
+}
