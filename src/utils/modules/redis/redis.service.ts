@@ -36,7 +36,7 @@ export class RedisService implements IRedisService {
 
     async getUser(key: string): Promise<Redis_User | null> {
         try {
-            const result = await this.redisClient.hGetAll(key);
+            const result: Redis_User = await this.redisClient.hGetAll(key);
             return result;
         } catch (error) {
             console.log(error);

@@ -6,15 +6,18 @@ export enum Services {
     Locate = "Locate-service",
     Auth = "Auth-service",
     Location = "Location-service",
-    User = "User-service"
+    User = "User-service",
+    Role = "Role-service"
 }
 
 export enum Controllers {
     Auth = "auth",
     Location = "location",
-    User = "user"
+    User = "user",
+    Role = "role"
 }
 
 export enum Guards {
-    Authen = "authen-guard"
+    Authen = "authen-guard",
+    Author = "author-guard"
 }
