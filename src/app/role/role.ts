@@ -1,1 +1,5 @@
-export interface IRoleService { }
+export interface IRoleService {
+    handleGetAllRoles()
+
+    handleGetAllPermissions()
+}

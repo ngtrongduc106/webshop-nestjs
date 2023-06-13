@@ -7,12 +7,14 @@ import { DSOptions } from './database';
 import { AuthModule } from './app/auth/auth.module';
 import { LocationModule } from './app/location/location.module';
 import { UserModule } from './app/user/user.module';
+import { RoleModule } from './app/role/role.module';
 
 @Module({
   imports: [
     AuthModule,
     LocationModule,
     UserModule,
+    RoleModule,
     // Config Typeorm
     TypeOrmModule.forRoot(DSOptions),
     // Config Env
